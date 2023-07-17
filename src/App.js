@@ -1,22 +1,33 @@
-import { Button } from '@material-ui/core';
+
 import './App.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import Home from '../src/Home/Home';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import NoMatch from './NoMatch/NoMatch';
+import PostDetail from './PostDetail/PostDetail';
 
 function App() {
+ 
   return (
-    <div >
-      <Button>Primary</Button>
-      <Button variant="contained">Contained</Button>
-<Button variant="contained" disabled>
-  Disabled
-</Button>
-<Button variant="contained" href="#contained-buttons">
-  Link
-</Button>
-    </div>
+    <Router>
+      <Routes>
+      <Route path='/home' element={<Home/>} />
+      <Route path='/post/:postId' element={<PostDetail/>}/>
+      <Route exact path='/' element={<Home/>} />
+      <Route path='/*' element={<NoMatch/>} />
+      </Routes>
+    </Router>
+    
+    
+    
   );
 }
 
